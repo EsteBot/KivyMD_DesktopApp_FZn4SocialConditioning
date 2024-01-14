@@ -1,0 +1,302 @@
+<MDScreen>:
+
+    experimentID: experimentID
+    scorerID: scorerID
+    dadata: dadata
+    play_pause_btn: play_pause_btn
+    reset_btn: reset_btn
+    cb1_subID: cb1_subID
+    cb2_subID: cb2_subID
+    cb3_subID: cb3_subID
+    cb4_subID: cb4_subID
+    cb1: cb1
+    cb2: cb2
+    cb3: cb3
+    cb4: cb4
+    unlock_data: unlock_data
+    unlock_btn: unlock_btn
+    submit_dat_btn: submit_dat_btn
+    xlfile_btn: xlfile_btn
+    sess_tm_btn: sess_tm_btn
+    file_name: file_name
+    file_name_err: file_name_err
+    usr_min: usr_min
+    usr_sec: usr_sec
+    time_guide: time_guide
+    check_text: check_text
+
+    FloatLayout:
+    
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: "Freezing Tracker App"
+            pos_hint: {"top": 1}
+            right_action_items: [["rotate-3d-variant",lambda x: root.reset_func()]]
+            color: 0.2, 0.78, 0.49
+            elevation: 15
+
+        MDLabel:
+            text: "SciApp By Esteban C. Loetz"
+            font_size: 43
+            halign: "center"
+            pos_hint: {"center_x": 0.50, "center_y":0.91}
+            color: 0.1, 0.84, 0.47
+
+        MDLabel:
+            id: file_name_err
+            text: ''
+            font_size: 30
+            text_color: 0.1, 0.84, 0.47
+            halign: "center"
+            pos_hint: {"center_x": 0.3, "center_y":0.87}
+            theme_text_color: "Custom"
+
+        MDTextField:
+            id: file_name
+            hint_text: 'File Name'
+            helper_text: 'Excel file name for data'
+            halign: 'center'
+            size_hint_x: 0.35
+            font_size: 35
+            pos_hint: {"center_x": 0.3, "center_y": 0.83}
+            theme_text_color: "Custom"
+            text_color: 0.1, 0.84, 0.47
+            line_color_focus: 0.92, 0.45, 0
+
+        MDRectangleFlatButton:
+            id: xlfile_btn
+            text: 'Create\nExcel\nFile'
+            text_color: 0.92, 0.45, 0
+            halign: 'center'
+            size_hint: (0.25, 0.05)
+            font_size: 25
+            pos_hint: {"center_x": 0.7, "center_y": 0.82}
+            line_color: 0.1, 0.84, 0.47
+            disabled: False
+            on_press: root.mk_xl_file()
+
+        MDTextField:
+            id: usr_min
+            hint_text:"   Minutes"
+            text: "00"
+            text_color: 0.1, 0.84, 0.47
+            halign: "center"
+            size_hint_x: 0.15
+            pos_hint: {"center_x": 0.2, "center_y":0.73}
+            font_size: 80
+            theme_text_color: "Custom"
+            text_color: 0.1, 0.84, 0.47
+            line_color_focus: 0.92, 0.45, 0
+
+        MDLabel:
+            text: ':'
+            font_size: 75
+            text_color: 0.1, 0.84, 0.47
+            halign: "center"
+            pos_hint: {"center_x": 0.3, "center_y":0.73}
+            theme_text_color: "Custom"
+
+        MDTextField:
+            id: usr_sec
+            hint_text:"   Seconds"
+            text: "00"
+            text_color: 0.1, 0.84, 0.47
+            halign: "center"
+            size_hint_x: 0.15
+            pos_hint: {"center_x": 0.4, "center_y":0.73}
+            font_size: 80
+            theme_text_color: "Custom"
+            text_color: 0.1, 0.84, 0.47
+            line_color_focus: 0.92, 0.45, 0
+            
+
+        MDIconButton:
+            id: play_pause_btn 
+            icon: 'play'
+            icon_size: "45sp"
+            pos_hint: {"center_x": 0.4, "center_y":0.65}
+            theme_text_color: "Custom"
+            text_color: 0.1, 0.84, 0.47
+            on_press: root.get_usr_min_sec(), root.start_or_stop_stopwatch()
+            disabled: True
+
+        MDIconButton:
+            id: reset_btn 
+            icon: 'undo-variant'
+            icon_size: "45sp"
+            pos_hint: {"center_x": 0.2, "center_y":0.65}
+            on_press: root.reset_stopwatch()
+            disabled: True
+            theme_text_color: "Custom"
+            text_color: 0.1, 0.84, 0.47
+
+        MDRectangleFlatButton:
+            id: sess_tm_btn
+            text: 'Enter\nTrial\nTime'
+            text_color: 0.92, 0.45, 0
+            halign: 'center'
+            size_hint: (0.25, 0.05)
+            font_size: 25
+            pos_hint: {"center_x": 0.7, "center_y": 0.7}
+            line_color: 0.1, 0.84, 0.47
+            disabled: False
+            on_press: root.set_sess_time()
+       
+        MDLabel:
+            id: dadata
+            text: ""
+            halign: 'center'
+            size_hint: (0.2, 0.2)
+            font_size: 35
+            pos_hint: {"center_x": 0.9, "center_y": 0.7}
+
+        MDTextField:
+            id: experimentID
+            hint_text:"Experiment ID"
+            halign: "center"
+            size_hint_x: 0.22
+            pos_hint: {"center_x": 0.25, "center_y":0.58}
+            font_size: 45
+            color_mode: 'custom'
+            line_color_focus: 0.1, 0.84, 0.47
+
+        MDTextField:
+            id: scorerID
+            hint_text:"Observer ID"
+            halign: "center"
+            size_hint_x: 0.22
+            pos_hint: {"center_x": 0.70, "center_y":0.58}
+            font_size: 45
+            color_mode: 'custom'
+            line_color_focus: 0.1, 0.84, 0.47
+
+        MDTextField:
+            id: cb1_subID
+            hint_text:"Box 1 Subj ID"
+            halign: "center"
+            size_hint_x: 0.22
+            pos_hint: {"center_x": 0.70, "center_y":0.47}
+            font_size: 45
+            color_mode: 'custom'
+            line_color_focus: 0.1, 0.84, 0.47
+
+        MDCheckbox:
+            id: cb1
+            font_size: 47
+            size_hint: 0.1, 0.1
+            halign: "center"
+            pos_hint: {"center_x": 0.70, "center_y":0.40}
+            inactive: True
+
+        MDTextField:
+            id: cb2_subID
+            hint_text:"Box 2 Subj ID"
+            halign: "center"
+            size_hint_x: 0.22
+            pos_hint: {"center_x": 0.70, "center_y":0.30}
+            font_size: 45
+            color_mode: 'custom'
+            line_color_focus: 0.1, 0.84, 0.47
+
+        MDCheckbox:
+            id: cb2
+            font_size: 47
+            size_hint: 0.1, 0.1
+            halign: "center"
+            pos_hint: {"center_x": 0.70, "center_y":0.22}
+            inactive: True
+
+        MDTextField:
+            id: cb3_subID
+            hint_text:"Box 3 Subj ID"
+            halign: "center"
+            size_hint_x: 0.22
+            pos_hint: {"center_x": 0.25, "center_y":0.47}
+            font_size: 45
+            color_mode: 'custom'
+            line_color_focus: 0.10, 0.84, 0.47
+
+        MDCheckbox:
+            id: cb3
+            font_size: 47
+            size_hint: 0.1, 0.1
+            halign: "center"
+            pos_hint: {"center_x": 0.25, "center_y":0.40}
+            inactive: True
+
+        MDTextField:
+            id: cb4_subID
+            hint_text:"Box 4 Subj ID"
+            halign: "center"
+            size_hint_x: 0.22
+            pos_hint: {"center_x": 0.25, "center_y":0.30}
+            font_size: 45
+            color_mode: 'custom'
+            line_color_focus: 0.1, 0.23, 0.47
+        MDCheckbox:
+            id: cb4
+            font_size: 47
+            size_hint: 0.1, 0.1
+            halign: "center"
+            pos_hint: {"center_x": 0.25, "center_y":0.22}
+            inactive: True
+
+        MDRectangleFlatButton:
+            id: unlock_data
+            text: 'Enter\n10 sec\nFZ Data'
+            text_color: 0.92, 0.45, 0
+            halign: 'center'
+            size_hint: (0.1, 0.1)
+            font_size: 30
+            pos_hint: {"center_x": 0.25, "center_y": 0.08}
+            line_color: 0.1, 0.84, 0.47
+            disabled: False
+            on_press: root.unlock_unlock_btn()
+            on_press: root.checkdaboxes()
+            disabled: True
+
+        MDLabel:
+            id: check_text
+            text: ''
+            font_size: 15
+            halign: "center"
+            pos_hint: {"center_x": 0.48, "center_y":0.44}
+            color: 0.1, 0.84, 0.47
+
+        MDLabel:
+            id: time_guide
+            text: ''
+            font_size: 15
+            halign: "center"
+            pos_hint: {"center_x": 0.48, "center_y":0.36}
+            color: 0.1, 0.84, 0.47
+
+        MDRectangleFlatButton:
+            id: unlock_btn
+            text: 'Unlock\nSubmit\nButton'
+            text_color: 0.92, 0.45, 0
+            halign: 'center'
+            size_hint: (0.1, 0.1)
+            font_size: 30
+            pos_hint: {"center_x": 0.48, "center_y": 0.08}
+            line_color: 0.1, 0.84, 0.47
+            disabled: False
+            on_press: root.unlock_submit_btn()
+            disabled: True
+
+        MDRectangleFlatButton:
+            id: submit_dat_btn
+            text: 'Submit\nTrial\n Data'
+            text_color: 0.92, 0.45, 0
+            halign: 'center'
+            size_hint: (0.1, 0.1)
+            font_size: 30
+            pos_hint: {"center_x": 0.7, "center_y": 0.08}
+            line_color: 0.1, 0.84, 0.47
+            disabled: False
+            on_press: root.submit_data()
+            on_press: root.calc_pct()
+            disabled: True
+            
+            
